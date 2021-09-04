@@ -57,28 +57,36 @@ Math test.lua:87: assertion failed!
 ]]
 ```
 
+the test function also returns the success of the test
+```lua
+test("my test", function()
+  local success = test("my test 1", function()
+    error("Purposeful error")
+  end)
+  if (not success) then -- it should skip second test
+    return
+  end
+  test("my test 2", function()
+  end)
+end)
+```
+
 ## Example
 ```lua
 test("Describe table.insert", function()
-	test("Located in environment", function()
-		assert(table.insert)
-	end)
-	
-	test("It moves the elements in the zone that was inserted", function()
-		local ARR = {1, 2}
-		
-		table.insert(ARR, 2, 3)
-		
-		assert(ARR[3] == 2 and ARR[2] == 3)
-	end)
-	
-	test("By default it inserts to the end of table", function()
-		local ARR = {1, 2}
-		
-		table.insert(ARR, "Hello")
-		
-		assert(ARR[3] == "Hello")
-	end)
+  test("Located in environment", function()
+    assert(table.insert)
+  end)	
+  test("It moves the elements in the zone that was inserted", function()
+    local ARR = {1, 2}
+    table.insert(ARR, 2, 3)	
+    assert(ARR[3] == 2 and ARR[2] == 3)
+  end)
+  test("By default it inserts to the end of table", function()
+    local ARR = {1, 2}	
+    table.insert(ARR, "Hello")
+    assert(ARR[3] == "Hello")
+  end)
 end)
 
 -- Describe table.insert: PASS
