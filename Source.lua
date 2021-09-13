@@ -1,3 +1,6 @@
+-- Lua-tester
+-- a unit tester consisting of only one function
+-- https://github.com/Losiel/Lua-tester
 
 local S = {
 	tests_data = nil;
