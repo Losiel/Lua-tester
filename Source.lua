@@ -72,3 +72,5 @@ local function test(name, callback)
 	S.parent = nil
 	S.tests_data = nil
 end
+
+return test
